@@ -1,6 +1,4 @@
-package papelaria.pedido;
-
-import papelaria.produto.Produto;
+package papelaria.model;
 
 class ItemPedido {
 
