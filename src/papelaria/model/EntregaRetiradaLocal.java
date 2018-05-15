@@ -19,5 +19,11 @@ public class EntregaRetiradaLocal extends Entrega {
     public double accept(EntregaValorVisitor visitor) {
         return visitor.visit(this);
     }
+
+    @Override
+    public String toString() {
+        return "Retirada no local";
+    }
+ 
     
 }

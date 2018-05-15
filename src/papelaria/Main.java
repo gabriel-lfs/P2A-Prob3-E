@@ -52,33 +52,45 @@ public class Main {
         //                                    Totais:                 = 1150g || R$ 6,25
 
         // Retirar o produto no local é de graça e não precisa de endereço do cliente
+        // Entrega = 0
+        // Pedido  = 6,25
+        // Total   = 6,25
         pedido.setEntrega(new EntregaRetiradaLocal(pedido));
-        System.out.println("Retirada na loja");
-        System.out.println("Entrega: " + dmf.format(pedido.getValorEntrega()));     // Entrega = 0
-        System.out.println("Pedido: " + dmf.format(pedido.getValorPedido()));       // Pedido  = 6,25
-        System.out.println("Total: " + dmf.format(pedido.getValorTotal()));         // Total   = 6,25
-
+        System.out.println(pedido.toString());
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        
         // Entrega via SEDEX
-        System.out.println("Entrega via SEDEX");
+        // Entrega = 30,00 (até 1,2Kg)
+        // Pedido  =  6,25
+        // Total   = 36,25
         pedido.setEntrega(new EntregaSedex(pedido, localEntrega));
-        System.out.println("Entrega: " + dmf.format(pedido.getValorEntrega()));     // Entrega = 30,00 (até 1,2Kg)
-        System.out.println("Pedido: " + dmf.format(pedido.getValorPedido()));       // Pedido  =  6,25
-        System.out.println("Total: " + dmf.format(pedido.getValorTotal()));         // Total   = 36,25
-
+        System.out.println(pedido.toString());
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        
         // Entrega via PAC
-        System.out.println("Entrega via PAC");
+        // Entrega = 15,00 (até 2Kg)
+        // Pedido  =  6,25
+        // Total   = 21,25
         pedido.setEntrega(new EntregaPAC(pedido, localEntrega));
-        System.out.println("Entrega: " + dmf.format(pedido.getValorEntrega()));     // Entrega = 15,00 (até 2Kg)
-        System.out.println("Pedido: " + dmf.format(pedido.getValorPedido()));       // Pedido  =  6,25
-        System.out.println("Total: " + dmf.format(pedido.getValorTotal()));         // Total   = 21,25
-
+        System.out.println(pedido.toString());
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        
         // Alterando para lançar exceção
-        System.out.println("PAC lançando exceção");
-        pedido.incluirItem(PRODUTOS[5], 3);// Incluindo 5 'Treco D'  - 7500g
-        System.out.println("Entrega: " + dmf.format(pedido.getValorEntrega()));     // Entrega = 15,00 (até 2Kg)
-        System.out.println("Pedido: " + dmf.format(pedido.getValorPedido()));       // Pedido  =  6,25
-        System.out.println("Total: " + dmf.format(pedido.getValorTotal()));         // Total   = 21,25
-
+        //System.out.println("PAC lançando exceção");
+        //pedido.incluirItem(PRODUTOS[5], 3);// Incluindo 5 'Treco D'  - 7500g
+        // Entrega = 15,00 (até 2Kg)
+        // Pedido  =  6,25
+        // Total   = 21,25
+        //System.out.println(pedido.toString());
     }
 
 }

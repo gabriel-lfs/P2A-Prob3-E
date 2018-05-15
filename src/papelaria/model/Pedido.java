@@ -1,5 +1,6 @@
 package papelaria.model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
@@ -76,6 +77,37 @@ public class Pedido {
 
     public double getValorTotal() {
         return getValorPedido() + getValorEntrega();
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat dmf = new DecimalFormat("###,###,##0.00");
+        StringBuilder produtos = new StringBuilder();
+
+        produtos.append("  Descrição    Qtd  Valor  Total\n");
+        itens.forEach(it -> {
+            produtos.append(String.format("  %-10s", it.getProduto().getDescricao()))
+                    .append(String.format(" %5d", it.getQuantidade()))
+                    .append(String.format(" %6s", dmf.format(it.getProduto().getValor())))
+                    .append(String.format(" %6s", dmf.format(it.getValorItem())))
+                    .append("\n");
+        });
+
+        return  " ___________________________________________________ \n"
+                + " Pedido   : " + numero + "\n"
+                + " Cliente  : " + nomeCliente + "\n"
+                + " Data     : " + data + "\n"
+                + " Lista de produtos \n"
+                + " --------------------------------------------------- \n"
+                + " Totais \n"
+                + produtos.toString()
+                + " --------------------------------------------------- \n"
+                + " Entrega  : " + (entrega.isPresent() ? entrega.get().toString() : "") + "\n"
+                + " --------------------------------------------------- \n"
+                + " Produtos : " + dmf.format(getValorPedido()) + "\n"
+                + " Entrega  : " + dmf.format(getValorEntrega()) + "\n"
+                + " Total    : " + dmf.format(getValorTotal()) + "\n"
+                + " ___________________________________________________ \n";
     }
 
 }

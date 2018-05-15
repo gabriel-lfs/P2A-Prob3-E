@@ -19,4 +19,11 @@ public class EntregaPAC extends Entrega {
     public double accept(EntregaValorVisitor visitor) {
         return visitor.visit(this);
     }
+
+    @Override
+    public String toString() {
+        return "Entrega PAC para " + endereco;
+    }
+    
+    
 }

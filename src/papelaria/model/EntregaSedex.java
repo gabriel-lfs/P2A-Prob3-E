@@ -20,4 +20,8 @@ public class EntregaSedex extends Entrega {
         return visitor.visit(this);
     }
 
+    @Override
+    public String toString() {
+        return "Entrega SEDEX para " + endereco;
+    }
 }

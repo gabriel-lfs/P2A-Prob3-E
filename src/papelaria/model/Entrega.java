@@ -16,6 +16,11 @@ public abstract class Entrega implements EntregaElement {
 
     protected Entrega(Pedido pedido, String endereco) {
         this.pedido = pedido;
+        this.endereco = endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public Pedido getPedido() {
