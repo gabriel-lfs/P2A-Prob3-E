@@ -99,11 +99,11 @@ public class Pedido {
                 + " Data     : " + data + "\n"
                 + " Lista de produtos \n"
                 + " --------------------------------------------------- \n"
-                + " Totais \n"
                 + produtos.toString()
                 + " --------------------------------------------------- \n"
                 + " Entrega  : " + (entrega.isPresent() ? entrega.get().toString() : "") + "\n"
                 + " --------------------------------------------------- \n"
+                + " Totais \n"
                 + " Produtos : " + dmf.format(getValorPedido()) + "\n"
                 + " Entrega  : " + dmf.format(getValorEntrega()) + "\n"
                 + " Total    : " + dmf.format(getValorTotal()) + "\n"
