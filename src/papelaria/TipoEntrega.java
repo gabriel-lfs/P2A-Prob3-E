@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package papelaria.model;
+package papelaria;
 
 /**
  *
- * @author guilh
+ * @author gabriel-souza
  */
-public interface EntregaElement {
-
-    public double accept(EntregaValorVisitor visitor);
+public enum TipoEntrega {
+    SEDEX, 
+    PAC, 
+    MOTOBOY, 
+    RETIRADA;
 }

@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package papelaria.model;
+package papelaria;
+
+import java.util.List;
+import papelaria.ItemPedido;
 
 /**
  *
- * @author guilh
+ * @author gabriel-souza
  */
-public class TipoEntregaInvalido extends RuntimeException {
-
-    public TipoEntregaInvalido(String message) {
-        super(message);
-    }
-
+public interface Entrega {
+    double calcular(List<ItemPedido> itens);
 }

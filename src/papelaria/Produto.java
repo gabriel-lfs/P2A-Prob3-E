@@ -1,4 +1,4 @@
-package papelaria.model;
+package papelaria;
 
 public class Produto {
 
