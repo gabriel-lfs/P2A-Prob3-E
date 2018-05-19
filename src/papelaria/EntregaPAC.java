@@ -36,7 +36,7 @@ public class EntregaPAC implements Entrega{
         }
     }
     
-    public EntregaPAC getInstance() {
+    public static EntregaPAC getInstance() {
         if(entrega == null)
             entrega = new EntregaPAC();
         return entrega;

@@ -12,6 +12,6 @@ package papelaria;
 public enum TipoEntrega {
     SEDEX, 
     PAC, 
-    MOTOBOY, 
-    RETIRADA;
+    RETIRADA,
+    MOTOBOY;
 }

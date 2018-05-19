@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package teste;
+
+import papelaria.*;
+import java.util.stream.*;
 
 /**
  *
@@ -11,36 +9,48 @@ package teste;
  */
 public class Teste {
 
+    private final static Produto[] PRODUTOS = new Produto[]{
+        new Produto("Objeto A", 0.25, 1),
+        new Produto("Objeto B", 1.50, 1),
+        new Produto("Item C", 1.50, 2),
+        new Produto("Item D", 3.50, 5),
+        new Produto("Treco E", 5.00, 15),
+        new Produto("Treco D", 10.50, 25)
+    };
+    
     public static void main(String[] args) {
-        int peso = 2230;
-        double valor;
-
-        if (peso <= 500) {
-            // Até 500 g – cobrará R$ 12,50
-            valor = 12.5;
-        } else if (peso <= 750) {
-            // De 501g até 750 g – cobrará R$ 20,00  
-            valor = 20.0;
-        } else if (peso <= 1200) {
-            // De 751g até 1200 g – cobrará R$ 30,00
-            valor = 30.0;
-        } else if (peso < 2000) {
-            // De 1201g até 2 kg – cobrará R$ 45,00
-            valor = 45.0;
-        } else {
-            /* Acima de 2 kg – cobrará R$ 45,00 + R$ 1,50 para cada 100g ou fração adicionais. Exemplo:
-             * para pedido pesando 2070 g, será cobrado R$ 46,50. Para pedido pesando 2180 g, será cobrado
-             / R$ 48,00. Para pedido pesando 2230g, será cobrado R$ 49,50.
-             */
-            double valorBase = 45;
-            int extra = peso - 2000;
-            while (extra > 0) {
-                extra -= 100;
-                valorBase += 1.5;
-            }
-            valor = valorBase;
-        }
-
-        System.out.println("valor: " + valor);
+        Pedido pedido = new Pedido();
+        pedido.incluirItem(PRODUTOS[0], 1);
+        pedido.incluirItem(PRODUTOS[1], 1);
+        pedido.incluirItem(PRODUTOS[2], 1);
+        
+        System.out.println("Retirada no local.");
+        System.out.println("Valor pedido: " + pedido.getValorPedido());
+        System.out.println("Valor entrega: " + pedido.getValorEntrega(TipoEntrega.RETIRADA));
+        System.out.println("Valor total: " + pedido.getValorTotal(TipoEntrega.RETIRADA));
+        
+        System.out.println("Entrega PAC.");
+        System.out.println("Valor pedido: " + pedido.getValorPedido());
+        System.out.println("Valor entrega: " + pedido.getValorEntrega(TipoEntrega.PAC));
+        System.out.println("Valor total: " + pedido.getValorTotal(TipoEntrega.PAC));
+        
+        System.out.println("Entrega SEDEX.");
+        System.out.println("Valor pedido: " + pedido.getValorPedido());
+        System.out.println("Valor entrega: " + pedido.getValorEntrega(TipoEntrega.SEDEX));
+        System.out.println("Valor total: " + pedido.getValorTotal(TipoEntrega.SEDEX));
+        
+        System.out.println("Entrega Motoboy.");
+        System.out.println("Valor pedido: " + pedido.getValorPedido());
+        System.out.println("Valor entrega: " + pedido.getValorEntrega(TipoEntrega.MOTOBOY));
+        System.out.println("Valor total: " + pedido.getValorTotal(TipoEntrega.MOTOBOY));
+        
+        pedido.incluirItem(PRODUTOS[3], 1);
+        pedido.incluirItem(PRODUTOS[4], 1);
+        pedido.incluirItem(PRODUTOS[5], 1);
+        
+        System.out.println("Entrega PAC lançando exceção.");
+        System.out.println("Valor pedido: " + pedido.getValorPedido());
+        System.out.println("Valor entrega: " + pedido.getValorEntrega(TipoEntrega.PAC));
+        System.out.println("Valor total: " + pedido.getValorTotal(TipoEntrega.PAC));
     }
 }

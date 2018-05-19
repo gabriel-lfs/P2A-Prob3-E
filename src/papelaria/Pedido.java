@@ -9,8 +9,10 @@ public class Pedido {
     private String nomeCliente;
     private Date data;
     private String endereco;
-    private ArrayList<ItemPedido> itens;
+    public ArrayList<ItemPedido> itens;
+    
     public Pedido() {
+        itens = new ArrayList();
     }
 
     public int getNumero() {
@@ -55,6 +57,19 @@ public class Pedido {
             valorTotal += (ip.getValorItem());
         }
         return valorTotal;
+    }
+    
+    public double getValorEntrega(TipoEntrega tipo) {
+        switch (tipo) {
+            case SEDEX: return EntregaSEDEX.getInstance().calcular(itens);
+            case MOTOBOY: return EntregaMotoboy.getInstance().calcular(itens);
+            case PAC: return EntregaPAC.getInstance().calcular(itens);
+            default: return 0;
+        }
+    }
+    
+    public double getValorTotal(TipoEntrega tipo) {
+        return getValorPedido() + getValorEntrega(tipo);
     }
 
 }
