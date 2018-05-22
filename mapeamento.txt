@@ -4,6 +4,8 @@ public interface Entrega {
     double calcular(List<ItemPedido> itens);
 }
 
+--> Prof. Marcel: o parâmetro do método Entrega.calcular(List<ItemPedido> itens) seria mais flexível se fosse Pedido, pois poderia indagar qualquer característica necessária para calcular o valor 
+
 ConcreteStrategy:
 
 public class EntregaMotoboy implements Entrega{
@@ -19,7 +21,9 @@ public class EntregaMotoboy implements Entrega{
                 .map(i -> i.getProduto().getPeso())
                 .reduce(Integer::sum)
                 .orElse(0);
-        
+
+--> Prof. Marcel: cada classe de Entrega está duplicando o código para calcular o peso. Este método deveria estar em Pedido e ser chamado por quem necessita. Afinal de contas, o peso é do Pedido e calculado sobre os atributos de Pedido (itens).
+
         if(peso <= 25 && itens.size() <= 30)
             return 7.0;
         
@@ -173,9 +177,19 @@ public class Pedido {
             default: return 0;
         }
     }
-    
+--> Prof. Marcel: criaram uma classe para cada tipo de entrega, ou seja, cada algoritmo de cálculo do valor de entrega foi encapsulado em um objeto - Correto! Porém não utilizaram o potencial da OO para facilitar a chamada destes algoritmos, ou seja, não aplicaram corretamente o padrão Strategy.
+Deveria ter criado um atributo TipoEntrega, que armazena a referência do objeto correspondente ao tipo de entrega selecionado. O método getValorEntrega não precisaria selecionar o objeto (switch), apenas faria a chamada:  entrega.calcular(itens)
+
+--> Prof. Marcel: o Pedido não armazenou a informação de qual tipo de entrega ele terá. Apenas é passado como parâmetro no momento do cálculo e depois perdido. Tanto que no método main é obrigado a repetir o dado passado:
+        System.out.println("Valor entrega: " + pedido.getValorEntrega(TipoEntrega.RETIRADA));
+        System.out.println("Valor total: " + pedido.getValorTotal(TipoEntrega.RETIRADA));
+
+
     public double getValorTotal(TipoEntrega tipo) {
         return getValorPedido() + getValorEntrega(tipo);
     }
 
 }
+
+--> Prof. Marcel: não mapearam o padrão Singleton
+--> Prof. Marcel: Nota 2,3
